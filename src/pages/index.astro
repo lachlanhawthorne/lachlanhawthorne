@@ -1,0 +1,43 @@
+---
+import '../assets/styles/app.css'
+import Logo from '../assets/vectors/logo.svg'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Lachlan Hawthorne</title>
+	</head>
+	<body
+		class={`
+			w-full
+			h-full
+			min-h-screen
+			flex
+			flex-col
+			justify-center
+			items-center
+			animation-fade-in
+		`}
+	>
+		<img src={Logo} color="red"  />
+		<h1
+			class={`
+				mt-6
+				mb-2
+				text-2xl
+				font-bold
+			`}
+		>
+			Under Maintenance
+		</h1>
+		<p
+			class={`
+				m-0
+				text-xl
+				text-neutral-400
+			`}
+		>Check back soon</p>
+	</body>
+</html>
