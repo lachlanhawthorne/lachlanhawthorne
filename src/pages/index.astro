@@ -1,6 +1,6 @@
 ---
 import '../assets/styles/app.css'
-import Logo from '../assets/vectors/logo.svg'
+import Logo from '../assets/vectors/logo.astro'
 ---
 
 <html lang="en">
@@ -21,7 +21,9 @@ import Logo from '../assets/vectors/logo.svg'
 			animation-fade-in
 		`}
 	>
-		<img src={Logo} color="red"  />
+
+		<Logo />
+	
 		<h1
 			class={`
 				mt-6
@@ -38,6 +40,8 @@ import Logo from '../assets/vectors/logo.svg'
 				text-xl
 				text-neutral-400
 			`}
-		>Check back soon</p>
+		>
+			Check back soon
+		</p>
 	</body>
 </html>

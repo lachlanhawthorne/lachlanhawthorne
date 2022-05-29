@@ -40,8 +40,8 @@
 
 :root {
 	color-scheme: light;
-	--theme-accent: var(--color-red);
-	--theme-accent-rgb: var(--color-red-rgb);
+	--theme-accent: var(--color-blue);
+	--theme-accent-rgb: var(--color-blue-rgb);
 	--theme-accent-opacity: 0.1;
 	--theme-divider: var(--color-gray-100);
 	--theme-text: var(--color-gray-800);
