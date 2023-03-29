@@ -6,14 +6,14 @@ import DefaultPageLayout from '../../layouts/default.astro'
 const title = 'Home'
 const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astro'
 
-export async function getStaticPaths({ paginate }) {
-  const allPosts = await Astro.glob('./*.md');
-//   const sortedPosts = allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+// export async function getStaticPaths({ paginate }) {
+//   const allPosts = await Astro.glob('./*.md');
+// //   const sortedPosts = allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    return paginate(allPosts, {
-      pageSize: 8
-    })
-}
+//     return paginate(allPosts, {
+//       pageSize: 8
+//     })
+// }
 
 const { page } = Astro.props
 
