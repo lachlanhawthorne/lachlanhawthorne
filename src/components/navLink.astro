@@ -1,0 +1,19 @@
+---
+const { href, label, newTab } = Astro.props
+---
+
+<a 
+  class="
+    flex 
+    items-center
+    min-h-[100%] 
+    text-white 
+    hover:(underline text-stone-500)
+    text-lg md:text-xl
+  " 
+  href={href}
+  target={newTab ? '_blank' : '_self'}
+>
+  {label ?? ''}
+  <slot/>
+</a>

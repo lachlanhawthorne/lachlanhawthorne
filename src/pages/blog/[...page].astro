@@ -1,0 +1,63 @@
+---
+import DefaultPageLayout from '../../layouts/default.astro'
+import Button from '../../components/button.astro'
+
+const title = 'Home'
+const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astro'
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await Astro.glob('./*.md');
+//   const sortedPosts = allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    return paginate(allPosts, {
+      pageSize: 8
+    })
+}
+
+const { page } = Astro.props
+
+console.log(page.data.map((post) => post.url))
+
+---
+<DefaultPageLayout content={{ title, description }} showPageHeader={false}>
+	<div class="flex flex-col w-full space-y-12 py-10">
+    <!-- <h1 class="text-3xl font-bold border-stone-800">Recent posts</h1> -->
+
+    <div class="flex flex-row min-h-[60px] space-x-6">
+      <label class="flex flex-1 bg-neutral-900 rounded-lg">
+        <input class="flex-1 px-6 appearance-none bg-transparent placeholder-neutral-400 text-xl" type="text" placeholder="Search" />
+      </label>
+
+      {[
+        { title: 'Filters' },
+        { title: 'Sort by' }
+      ].map(({title}) => {
+        return (
+        <Button>
+          {title}
+        </Button>
+        )
+      })}
+
+      
+    </div>
+    <div class="flex flex-col space-y-16 my-8">
+      {page.data.map((post) => (
+        <a href={post.url} class="group">
+          <div class="text-stone-400 space-x-2">
+            <span>{new Date(post.frontmatter.date).toDateString()}</span>
+            <span>&middot;</span>
+            <span>124 views</span>
+          </div>
+          <h3 class="text-3xl max-w-xl my-4 font-bold group-hover:underline pr-8 leading-normal">{post.frontmatter.title}</h3>
+          <p class="text-xl max-w-2xl leading-relaxed">{post.frontmatter.description}</p>
+        </a>
+      ))}
+    </div>
+    <div class="flex items-start">
+      <button class="text-lg border border-neutral-600 hover:bg-neutral-900 hover:border-neutral-400 text-white min-h-[60px] px-6 rounded-lg">
+        More posts...
+      </button>
+    </div>
+  </div>
+</DefaultPageLayout>

@@ -1,47 +1,30 @@
 ---
-import '../assets/styles/app.css'
-import Logo from '../assets/vectors/logo.astro'
+import DefaultPageLayout from '$/layouts/default.astro'
+import ThreeScene from 'src/components/ThreeScene.astro';
+
+// const title = 'Home'
+// const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astro'
+
+// const posts = await Astro.glob('./blog/*.md')
+
 ---
+<DefaultPageLayout showPageHeader={false}>
+	<div class="flex flex-row flex-1 min-h-full min-h-[300px] max-h-[700px]">
+		<div id="homePageContainer" class="relative flex flex-row w-full min-h-full flex-1">
+			<div 
+				class="flex flex-col space-y-3 w-full md:min-w-[50%]  text-center md:text-left justify-center z-50"
+				style={{
+					textShadow: '0 5px 5px rgba(0,0,0,0.5)'
+				}}
+			>
+				<!-- <h1 class="text-3xl md:text-4xl font-black text-shad">Lachlan Hawthorne</h1> -->
+				<h2 class="text-2xl md:text-3xl">Full Stack Developer</h2>
+			</div>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Lachlan Hawthorne</title>
-	</head>
-	<body
-		class={`
-			w-full
-			h-full
-			min-h-screen
-			flex
-			flex-col
-			justify-center
-			items-center
-			animation-fade-in
-		`}
-	>
-
-		<Logo />
-	
-		<h1
-			class={`
-				mt-6
-				mb-2
-				text-2xl
-				font-bold
-			`}
-		>
-			Under Maintenance
-		</h1>
-		<p
-			class={`
-				m-0
-				text-xl
-				text-neutral-400
-			`}
-		>
-			Check back soon
-		</p>
-	</body>
-</html>
+			<div class="absolute md:relative flex w-full md:w-1/2 md:ml-10 h-full items-center justify-center md:justify-start">
+				<ThreeScene />
+			</div>
+		</div>
+		
+	</div>
+</DefaultPageLayout>
