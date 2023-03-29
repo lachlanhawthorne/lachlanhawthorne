@@ -17,14 +17,14 @@ const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astr
 
 const { page } = Astro.props
 
-console.log(page.data.map((post) => post.url))
+console.log(page?.data.map((post) => post.url))
 
 ---
 <DefaultPageLayout content={{ title, description }} showPageHeader={false}>
 	<div class="flex flex-col w-full my-10 space-y-12">
     <!-- <h1 class="text-4xl font-black border-stone-800">Projects</h1> -->
     <div class="grid grid-cols-2 gap-8">
-      {page.data.map((post) => (
+      {page?.data.map((post) => (
         <div>
           <a href={post.url} class="group">
             <div class="flex min-h-[220px] bg-neutral-800"></div>
