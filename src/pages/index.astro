@@ -1,30 +1,84 @@
 ---
-import DefaultPageLayout from '$/layouts/default.astro'
-import ThreeScene from 'src/components/ThreeScene.astro';
-
-// const title = 'Home'
-// const description = 'Astro-Ink is a crisp, minimal, personal blog theme for Astro'
-
-// const posts = await Astro.glob('./blog/*.md')
-
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/card.astro';
 ---
-<DefaultPageLayout showPageHeader={false}>
-	<div class="flex flex-row flex-1 min-h-full min-h-[300px] max-h-[700px]">
-		<div id="homePageContainer" class="relative flex flex-row w-full min-h-full flex-1">
-			<div 
-				class="flex flex-col space-y-3 w-full md:min-w-[50%]  text-center md:text-left justify-center z-50"
-				style={{
-					textShadow: '0 5px 5px rgba(0,0,0,0.5)'
-				}}
-			>
-				<h1 class="text-3xl md:text-4xl font-black text-shad">Lachlan Hawthorne</h1>
-				<h2 class="text-2xl md:text-3xl">Full Stack Developer</h2>
-			</div>
 
-			<div class="absolute md:relative flex w-full md:w-1/2 md:ml-10 h-full items-center justify-center md:justify-start">
-				<ThreeScene />
-			</div>
+<Layout title="Lachlan Hawthorne">
+	<main class="flex flex-col container px-10 gap-10 py-10 text-white">
+		<p class="w-full text-3xl md:text-5xl lg:text-6xl">
+			<b class="font-bold">lachlan hawthorne</b> [he/him] is a designer and developer from australia working at <a href="https://editbase.com" rel="noopener noreferrer" target="_blank">editbase</a>. as you are reading this he is probably making an iced latte, curating a <a href="/playlist">playlist</a> or watching a <a href="https://www.youtube.com/watch?v=kUMe1FH4CHE" rel="noopener noreferrer" target="_blank">programming tutorial</a> at 2x speed.
+		</p>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-black">
+				
+
+				<div class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
+					<Card 
+					href="https://github.com/editbase/ui" 
+					title="editbase ui" 
+					subtitle="a framework agnostic ui package for the web" 
+					imageSrc="/smile.png" 
+					/>
+
+					<Card 
+					href="https://github.com/lachlanhawthorne/stacked" 
+					title="stacked" 
+						subtitle="a typescript starter with cms, ui library and clients" 
+						imageSrc="/dance.png" 
+					/>
+				</div>
+
+				
+				<div class="col-span-2 grid grid-cols-1 md:grid-cols-3 gap-5">
+					<Card 
+						href="/playlist" 
+						title="playlist" 
+						subtitle="one of my many curated playlist featuring some songs that i love" 
+						imageSrc="/love.png" 
+					/>
+					<Card 
+					href="https://github.com/lachlanhawthorne/todos" 
+						title="todos" 
+						subtitle="cross platform todo starter, this got like 60 stars on github so..." 
+						imageSrc="/check.png" 
+					/>
+					<Card 
+						href="https://github.com/lachlanhawthorne/lachlanhawthorne" 
+						title="portfolio" 
+						subtitle="the source code for this website, clone it and steal it irdgaf" 
+						imageSrc="/build.png" 
+					/>
+				</div>
+
 		</div>
-		
-	</div>
-</DefaultPageLayout>
+
+		<footer class="flex flex-row justify-between text-white/50 flex-wrap">
+			<div class="flex flex-row gap-4 flex-w">
+				<a href="https://github.com/lachlanhawthorne" rel="noopener noreferrer" target="_blank">
+					github
+				</a>
+				<a href="https://twitter.com/lachhawthorne" rel="noopener noreferrer" target="_blank">
+					twitter or whatever they call it
+				</a>
+				<a href="https://www.linkedin.com/in/lachlanhawthorne/" rel="noopener noreferrer" target="_blank">
+					linkedin
+				</a>
+			</div>
+			<p>have a nice day.</p>
+		</footer>
+	</main>
+</Layout>
+
+<style is:global>
+	p > a {
+		@apply underline;
+	}
+
+	footer {
+		@apply text-white/50;
+	}
+
+	footer a:hover {
+		@apply text-white;
+	}
+</style>
