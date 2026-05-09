@@ -1,0 +1,10 @@
+# Lachlan Hawthorne personal website
+# Astro 4 + Tailwind
+
+[project]
+name = "lachlanhawthorne"
+type = "static"
+
+[dev]
+command = "pnpm dev"
+port = 4321
