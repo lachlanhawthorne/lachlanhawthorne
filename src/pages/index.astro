@@ -1,59 +1,81 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/card.astro';
+import screenfixedLogo from '../images/sites/screenfixed.png';
+import tradeLogo from '../images/sites/trade.png';
+import malLogo from '../images/sites/melbourneartlibrary.png';
+
+const sites = [
+	{
+		href: 'https://screenfixed.com.au',
+		domain: 'screenfixed',
+		tld: '.com.au',
+		logo: screenfixedLogo,
+		accent: '#2fa8ff',
+	},
+	{
+		href: 'https://trade.com.au',
+		domain: 'trade',
+		tld: '.com.au',
+		logo: tradeLogo,
+		accent: '#2bd24a',
+	},
+	{
+		href: 'https://melbourneartlibrary.org.au',
+		domain: 'melbourneartlibrary',
+		tld: '.org.au',
+		logo: malLogo,
+		accent: '#d8d8d8',
+	},
+];
 ---
 
 <Layout title="Lachlan Hawthorne">
-	<main class="flex flex-col container px-10 gap-10 py-10 text-white">
-		<p class="w-full text-3xl md:text-5xl lg:text-6xl">
-			<b class="font-bold">lachlan hawthorne</b> is a designer and developer from australia working on <a href="https://editbase.com" rel="noopener noreferrer" target="_blank">editbase</a>. as you are reading this he is probably making an iced latte, curating a <a href="/playlist">playlist</a> or watching a <a href="https://www.youtube.com/watch?v=kUMe1FH4CHE" rel="noopener noreferrer" target="_blank">programming tutorial</a> at 2x speed.
+	<main class="flex min-h-[100dvh] w-full max-w-3xl flex-col justify-center gap-14 px-6 py-14 text-white md:px-10">
+		<h1 class="text-2xl leading-snug md:text-4xl md:leading-snug">
+			<b class="font-bold">lachlan hawthorne</b> is an australian who builds
+			websites and drinks iced lattes. only one of those pays rent.
+		</h1>
+
+		<nav class="site-index" aria-label="websites lachlan built">
+			{
+				sites.map((site) => (
+					<a
+						class="site-row"
+						href={site.href}
+						style={`--accent: ${site.accent}`}
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						<Image
+							src={site.logo}
+							alt={`${site.domain}${site.tld} logo`}
+							width={144}
+							height={144}
+							class="site-logo"
+						/>
+						<span class="site-domain">
+							{site.domain}<span class="site-tld">{site.tld}</span>
+						</span>
+						<span class="site-arrow" aria-hidden="true">
+							&rarr;
+						</span>
+					</a>
+				))
+			}
+		</nav>
+
+		<p class="text-lg text-white/50 md:text-xl">
+			<a
+				href="https://editbase.com/lachlan"
+				class="editbase-link"
+				rel="noopener noreferrer"
+				target="_blank">view all my projects on editbase &rarr;</a
+			>
 		</p>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-black">
-				
-
-				<div class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
-					<Card 
-					href="https://github.com/editbase/ui/tree/beta" 
-					title="editbase ui" 
-					subtitle="a framework agnostic ui package for the web" 
-					imageSrc="/smile.png" 
-					/>
-
-					<Card 
-					href="https://github.com/lachlanhawthorne/stacked" 
-					title="stacked" 
-						subtitle="a typescript starter with cms, ui library and clients" 
-						imageSrc="/dance.png" 
-					/>
-				</div>
-
-				
-				<div class="col-span-2 grid grid-cols-1 md:grid-cols-3 gap-5">
-					<Card 
-						href="/playlist" 
-						title="playlist" 
-						subtitle="one of my many curated playlist featuring some songs that i love" 
-						imageSrc="/love.png" 
-					/>
-					<Card 
-					href="https://github.com/lachlanhawthorne/todos" 
-						title="todos" 
-						subtitle="cross platform todo starter, this got like 60 stars on github so..." 
-						imageSrc="/check.png" 
-					/>
-					<Card 
-						href="https://github.com/lachlanhawthorne/lachlanhawthorne" 
-						title="portfolio" 
-						subtitle="the source code for this website, clone it and steal it irdgaf" 
-						imageSrc="/build.png" 
-					/>
-				</div>
-
-		</div>
-
-		<footer class="flex flex-row justify-between text-white/50 flex-wrap">
-			<div class="flex flex-row gap-4 flex-w">
+		<footer class="flex flex-row flex-wrap justify-between gap-4 text-white/50">
+			<div class="flex flex-row flex-wrap gap-4">
 				<a href="https://github.com/lachlanhawthorne" rel="noopener noreferrer" target="_blank">
 					github
 				</a>
@@ -69,16 +91,106 @@ import Card from '../components/card.astro';
 	</main>
 </Layout>
 
-<style is:global>
-	p > a {
-		@apply underline;
+<style>
+	.site-index {
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 	}
 
-	footer {
-		@apply text-white/50;
+	.site-row {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		padding: 1.25rem 1rem;
+		margin-inline: -1rem;
+		transition:
+			background-color 0.2s ease,
+			transform 0.2s ease;
 	}
 
+	.site-row + .site-row {
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.site-row:hover,
+	.site-row:focus-visible {
+		background-color: color-mix(in srgb, var(--accent) 9%, transparent);
+	}
+
+	.site-row:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: -2px;
+	}
+
+	.site-logo {
+		width: 3.5rem;
+		height: 3.5rem;
+		flex-shrink: 0;
+		border-radius: 1rem;
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+		transition: transform 0.2s ease;
+	}
+
+	.site-row:hover .site-logo {
+		transform: scale(1.06);
+	}
+
+	.site-domain {
+		font-family:
+			ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: clamp(1rem, 3.4vw, 1.7rem);
+		letter-spacing: -0.02em;
+		overflow-wrap: anywhere;
+	}
+
+	.site-tld {
+		color: rgba(255, 255, 255, 0.42);
+		white-space: nowrap;
+	}
+
+	.site-arrow {
+		margin-left: auto;
+		color: rgba(255, 255, 255, 0.42);
+		font-size: 1.25rem;
+		transition:
+			color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.site-row:hover .site-arrow {
+		color: var(--accent);
+		transform: translateX(0.25rem);
+	}
+
+	.editbase-link:hover {
+		color: white;
+	}
+
+	.editbase-link:hover,
 	footer a:hover {
-		@apply text-white;
+		color: white;
+	}
+
+	@media (min-width: 768px) {
+		.site-logo {
+			width: 4.5rem;
+			height: 4.5rem;
+			border-radius: 1.25rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.site-row,
+		.site-logo,
+		.site-arrow {
+			transition: none;
+		}
+
+		.site-row:hover .site-logo,
+		.site-row:hover .site-arrow {
+			transform: none;
+		}
 	}
 </style>
